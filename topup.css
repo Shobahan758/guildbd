@@ -62,6 +62,8 @@ a { text-decoration: none; }
 .brand-mark svg { transform: rotate(5deg); }
 .brand-accent { color: var(--primary); }
 
+.product-heading .product-title-name { color: var(--ink); }
+
 .search-box {
   display: flex;
   min-width: 0;
