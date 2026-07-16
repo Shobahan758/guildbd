@@ -138,6 +138,18 @@
       border-radius: 0.7rem;
     }
 
+    .logout-form { margin: 0; }
+    .logout-btn {
+      padding: 0.65rem 1rem;
+      color: var(--primary);
+      font-size: 0.86rem;
+      font-weight: 700;
+      background: rgba(124, 58, 237, 0.08);
+      border: 0;
+      border-radius: 0.7rem;
+    }
+    .logout-btn:hover { color: #fff; background: var(--primary); }
+
     .language-menu {
       position: relative;
       margin: 0;
@@ -788,6 +800,7 @@
       .language-menu summary { min-height: 2.35rem; padding: 0.48rem 0.58rem; }
       .language-label { display: none; }
       .login-btn { padding: 0.55rem 0.7rem; font-size: 0.8rem; }
+      .logout-btn { padding: 0.55rem 0.65rem; font-size: 0.78rem; }
       .search-box .form-control { min-height: 43px; padding-inline: 0.75rem; font-size: 0.82rem; }
       .search-btn { min-width: 72px; padding-inline: 0.65rem !important; font-size: 0.8rem; }
       .promo-banner { min-height: 440px; border-radius: 1rem; }
@@ -853,7 +866,7 @@
 
         <nav class="account-nav d-flex align-items-center gap-3 ms-auto" aria-label="Account navigation">
           <a class="nav-link-custom d-none d-sm-inline" href="#games">Browse</a>
-          <a class="nav-link-custom d-none d-sm-inline" href="{{ route('register') }}">Register</a>
+          @guest<a class="nav-link-custom d-none d-sm-inline" href="{{ route('register') }}">Register</a>@endguest
           <details class="language-menu">
             <summary aria-label="Choose language">
               <span aria-hidden="true">🌐</span>
@@ -864,7 +877,12 @@
               <a class="language-option" href="{{ route('home', ['lang' => 'bn']) }}" lang="bn">বাংলা</a>
             </div>
           </details>
-          <a class="nav-link-custom login-btn" href="{{ route('login') }}">Login</a>
+          @guest
+            <a class="nav-link-custom login-btn" href="{{ route('login') }}">Login</a>
+          @else
+            @if(auth()->user()->is_admin)<a class="nav-link-custom d-none d-sm-inline" href="{{ route('admin.dashboard') }}">Admin</a>@endif
+            <form class="logout-form" action="{{ route('logout') }}" method="post">@csrf<button class="logout-btn" type="submit">Logout</button></form>
+          @endguest
         </nav>
       </div>
     </div>

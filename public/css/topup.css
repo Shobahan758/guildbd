@@ -127,6 +127,18 @@ svg { max-width: 100%; }
   border-radius: 0.7rem;
 }
 
+.logout-form { margin: 0; }
+.logout-link {
+  padding: 0.6rem 0.85rem;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(124, 58, 237, 0.08);
+  border: 0;
+  border-radius: 0.7rem;
+}
+.logout-link:hover { color: #fff; background: var(--primary); }
+
 .page-language { position: relative; }
 
 .page-language summary {
@@ -658,6 +670,7 @@ svg { max-width: 100%; }
   .page-language summary { min-height: 2.3rem; padding: 0.45rem 0.55rem; }
   .register-link { display: none; }
   .login-link { padding: 0.52rem 0.68rem; font-size: 0.78rem; }
+  .logout-link { padding: 0.52rem 0.62rem; font-size: 0.76rem; }
   .search-box .form-control { min-height: 43px; padding-inline: 0.75rem; font-size: 0.82rem; }
   .search-btn { min-width: 72px; padding-inline: 0.65rem !important; font-size: 0.8rem; }
   .breadcrumb-link { font-size: 0.76rem; }

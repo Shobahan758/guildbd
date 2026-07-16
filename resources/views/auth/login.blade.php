@@ -53,6 +53,9 @@
           @if ($errors->any())
             <div class="alert alert-danger" role="alert">{{ $errors->first() }}</div>
           @endif
+          @if (session('status'))
+            <div class="alert alert-success" role="status">{{ session('status') }}</div>
+          @endif
 
           <form action="{{ route('login.store') }}" method="post">
             @csrf
@@ -64,7 +67,7 @@
             <div class="mb-3">
               <div class="d-flex justify-content-between gap-3">
                 <label class="form-label" for="login-password">Password</label>
-                <a class="helper-link" href="#">Forgot password?</a>
+                <a class="helper-link" href="{{ route('password.request') }}">Forgot password?</a>
               </div>
               <input class="form-control" id="login-password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
             </div>

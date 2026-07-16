@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PasswordResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,11 +14,17 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::view('/login', 'auth.login')->name('login');
-Route::view('/register', 'auth.register')->name('register');
-Route::post('/login', [AuthController::class, 'login'])->name('login.store');
-Route::post('/register', [AuthController::class, 'register'])->name('register.store');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::middleware('guest')->group(function () {
+    Route::view('/login', 'auth.login')->name('login');
+    Route::view('/register', 'auth.register')->name('register');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+    Route::get('/forgot-password', [PasswordResetController::class, 'request'])->name('password.request');
+    Route::post('/forgot-password', [PasswordResetController::class, 'email'])->name('password.email');
+    Route::get('/reset-password/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
+    Route::post('/reset-password', [PasswordResetController::class, 'update'])->name('password.update');
+});
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', AdminDashboardController::class)->name('dashboard');

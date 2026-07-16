@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS gamenova_test;
+GRANT ALL PRIVILEGES ON gamenova_test.* TO 'gamenova'@'%';
+FLUSH PRIVILEGES;

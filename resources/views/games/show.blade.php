@@ -35,7 +35,7 @@
         </form>
 
         <nav class="header-nav d-flex align-items-center gap-3 ms-auto" aria-label="Account navigation">
-          <a class="nav-link-custom register-link" href="{{ route('register') }}">Register</a>
+          @guest<a class="nav-link-custom register-link" href="{{ route('register') }}">Register</a>@endguest
           <details class="page-language">
             <summary aria-label="Choose language"><span aria-hidden="true">🌐</span><span class="language-label">EN</span></summary>
             <div class="language-options">
@@ -43,7 +43,12 @@
               <a class="language-option" href="#" lang="bn">বাংলা</a>
             </div>
           </details>
-          <a class="nav-link-custom login-link" href="{{ route('login') }}">Login</a>
+          @guest
+            <a class="nav-link-custom login-link" href="{{ route('login') }}">Login</a>
+          @else
+            @if(auth()->user()->is_admin)<a class="nav-link-custom register-link" href="{{ route('admin.dashboard') }}">Admin</a>@endif
+            <form class="logout-form" action="{{ route('logout') }}" method="post">@csrf<button class="logout-link" type="submit">Logout</button></form>
+          @endguest
         </nav>
       </div>
     </div>

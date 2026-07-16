@@ -4,7 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
@@ -95,6 +98,60 @@ class ExampleTest extends TestCase
             'status' => 'completed',
             'admin_note' => 'Top-up delivered.',
         ]);
+    }
+
+    public function test_registration_login_logout_and_guest_redirects_work(): void
+    {
+        $this->post('/register', [
+            'first_name' => 'Nova',
+            'last_name' => 'Player',
+            'email' => 'player@example.com',
+            'phone' => '01712345678',
+            'password' => 'StrongPass123!',
+            'password_confirmation' => 'StrongPass123!',
+            'terms' => '1',
+        ])->assertRedirect('/');
+
+        $this->assertAuthenticated();
+        $this->assertDatabaseHas('users', [
+            'email' => 'player@example.com',
+            'phone' => '01712345678',
+        ]);
+        $this->get('/login')->assertRedirect('/');
+        $this->post('/logout')->assertRedirect('/');
+        $this->assertGuest();
+
+        $this->post('/login', [
+            'email' => 'player@example.com',
+            'password' => 'StrongPass123!',
+        ])->assertRedirect('/');
+        $this->assertAuthenticated();
+    }
+
+    public function test_a_user_can_reset_their_password(): void
+    {
+        Notification::fake();
+        $user = User::factory()->create(['email' => 'reset@example.com']);
+
+        $this->post('/forgot-password', ['email' => $user->email])
+            ->assertSessionHasNoErrors()
+            ->assertSessionHas('status');
+
+        $token = null;
+        Notification::assertSentTo($user, ResetPassword::class, function (ResetPassword $notification) use (&$token) {
+            $token = $notification->token;
+
+            return true;
+        });
+
+        $this->post('/reset-password', [
+            'token' => $token,
+            'email' => $user->email,
+            'password' => 'NewStrongPass123!',
+            'password_confirmation' => 'NewStrongPass123!',
+        ])->assertRedirect('/login')->assertSessionHasNoErrors();
+
+        $this->assertTrue(Hash::check('NewStrongPass123!', $user->fresh()->password));
     }
 
     public function test_all_storefront_images_exist_and_are_rendered(): void

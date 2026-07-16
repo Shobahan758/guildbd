@@ -1,0 +1,23 @@
+services:
+  database:
+    image: mysql:8.4
+    container_name: gamenova-database
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: gamenova
+      MYSQL_USER: gamenova
+      MYSQL_PASSWORD: gamenova_secret
+      MYSQL_ROOT_PASSWORD: gamenova_root_secret
+    ports:
+      - "127.0.0.1:3308:3306"
+    volumes:
+      - gamenova_mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pgamenova_root_secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  gamenova_mysql_data:

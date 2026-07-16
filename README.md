@@ -22,13 +22,16 @@ GameNova is a bilingual (English/Bangla) game top-up storefront built with Larav
 composer install
 cp .env.example .env
 php artisan key:generate
+docker compose up -d
 php artisan migrate --seed
 php artisan serve
 ```
 
 Open `http://127.0.0.1:8000`.
 
-The authentication routes require a configured database and the matching PDO extension. File-based cache and sessions are enabled by default so the storefront can render without a database connection.
+The included Docker Compose service starts MySQL on port `3308`, matching `.env.example`. File-based cache and sessions remain enabled by default.
+
+Authentication includes registration with a Bangladesh phone number, throttled login attempts, secure logout, authenticated header state and email password reset. In local development reset emails are written to `storage/logs/laravel.log` by the configured log mailer.
 
 ## Admin dashboard
 
