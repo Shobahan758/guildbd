@@ -17,7 +17,11 @@ class ExampleTest extends TestCase
     public function test_the_homepage_and_auth_pages_render(): void
     {
         $this->get('/')->assertOk()->assertSee('GameNova');
-        $this->get('/login')->assertOk()->assertSee('Welcome back');
+        $this->get('/login')
+            ->assertOk()
+            ->assertSee('Welcome back')
+            ->assertSee('data-password-toggle', false)
+            ->assertSee(asset('js/auth.js'));
         $this->get('/register')->assertOk()->assertSee('Create account');
     }
 
