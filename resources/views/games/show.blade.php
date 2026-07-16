@@ -68,7 +68,7 @@
           <aside class="col-lg-3 fade-up">
             <article class="product-card">
               <div class="product-cover">
-                <img src="{{ asset($game['image']) }}" alt="{{ $game['name'] }} promotional artwork" width="1200" height="675">
+                <img src="{{ asset($game['image']) }}" alt="{{ $game['name'] }} promotional artwork" width="{{ $game['image_width'] }}" height="{{ $game['image_height'] }}">
                 <div class="cover-copy">
                   <h2>{{ $game['name'] }}</h2>
                   <p>{{ $game['subtitle'] }}</p>

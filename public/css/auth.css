@@ -40,7 +40,7 @@ a:hover { color: var(--primary-dark); }
   isolation: isolate;
   min-height: 700px;
   overflow: hidden;
-  background: var(--navy) url("assets/gaming-hero.png") 64% center / cover no-repeat;
+  background: var(--navy) url("../assets/gaming-hero.png") 64% center / cover no-repeat;
 }
 
 .auth-visual::before {

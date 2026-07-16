@@ -889,7 +889,7 @@
           <div class="col fade-up">
             <a class="game-card" href="{{ route('games.show', 'free-fire') }}" aria-label="Top up Free Fire diamonds">
               <div class="game-art art-1">
-                <img src="{{ asset('assets/games/free-fire.jpg') }}" alt="" width="1920" height="1080" loading="lazy">
+                <img src="{{ asset('assets/games/free-fire.jpg') }}" alt="Free Fire Diamonds artwork" width="1920" height="1080" loading="lazy">
               </div>
               <div class="game-info">
                 <h3 class="game-name">Free Fire Diamonds</h3>
@@ -901,7 +901,7 @@
           <div class="col fade-up delay-1">
             <a class="game-card" href="{{ route('games.show', 'pubg-mobile') }}" aria-label="Top up PUBG Mobile UC">
               <div class="game-art art-2">
-                <img src="{{ asset('assets/games/pubg-mobile.jpg') }}" alt="" width="400" height="400" loading="lazy">
+                <img src="{{ asset('assets/games/pubg-mobile.jpg') }}" alt="PUBG Mobile UC artwork" width="400" height="400" loading="lazy">
               </div>
               <div class="game-info">
                 <h3 class="game-name">PUBG Mobile UC</h3>
@@ -913,7 +913,7 @@
           <div class="col fade-up delay-2">
             <a class="game-card" href="{{ route('games.show', 'mobile-legends') }}" aria-label="Top up Mobile Legends diamonds">
               <div class="game-art art-3">
-                <img src="{{ asset('assets/games/mobile-legends.jpg') }}" alt="" width="600" height="315" loading="lazy">
+                <img src="{{ asset('assets/games/mobile-legends.jpg') }}" alt="Mobile Legends artwork" width="600" height="315" loading="lazy">
               </div>
               <div class="game-info">
                 <h3 class="game-name">Mobile Legends</h3>
@@ -925,7 +925,7 @@
           <div class="col fade-up delay-1">
             <a class="game-card" href="{{ route('games.show', 'call-of-duty') }}" aria-label="Top up Call of Duty Mobile CP">
               <div class="game-art art-4">
-                <img src="{{ asset('assets/games/call-of-duty-mobile.jpg') }}" alt="" width="3840" height="2160" loading="lazy">
+                <img src="{{ asset('assets/games/call-of-duty-mobile.jpg') }}" alt="Call of Duty Mobile CP artwork" width="3840" height="2160" loading="lazy">
               </div>
               <div class="game-info">
                 <h3 class="game-name">Call of Duty CP</h3>
@@ -937,7 +937,7 @@
           <div class="col fade-up delay-2">
             <a class="game-card" href="{{ route('games.show', 'valorant') }}" aria-label="Buy Valorant points">
               <div class="game-art art-5">
-                <img src="{{ asset('assets/games/valorant.webp') }}" alt="" width="1200" height="630" loading="lazy">
+                <img src="{{ asset('assets/games/valorant.webp') }}" alt="Valorant Points artwork" width="1200" height="630" loading="lazy">
               </div>
               <div class="game-info">
                 <h3 class="game-name">Valorant Points</h3>

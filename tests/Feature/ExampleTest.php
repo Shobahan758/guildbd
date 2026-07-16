@@ -42,4 +42,20 @@ class ExampleTest extends TestCase
             'payment' => 'wallet',
         ])->assertSessionHasNoErrors()->assertSessionHas('order_success');
     }
+
+    public function test_all_storefront_images_exist_and_are_rendered(): void
+    {
+        $this->assertFileExists(public_path('assets/gaming-hero.png'));
+
+        foreach (config('games') as $slug => $game) {
+            $this->assertFileExists(public_path($game['image']));
+
+            $this->get("/games/{$slug}")
+                ->assertOk()
+                ->assertSee(asset($game['image']));
+        }
+
+        $authCss = file_get_contents(public_path('css/auth.css'));
+        $this->assertStringContainsString('../assets/gaming-hero.png', $authCss);
+    }
 }
