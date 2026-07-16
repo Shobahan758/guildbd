@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\GameController as AdminGameController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OrderController;
@@ -15,6 +18,14 @@ Route::view('/register', 'auth.register')->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', AdminDashboardController::class)->name('dashboard');
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::patch('/orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
+    Route::get('/games', [AdminGameController::class, 'index'])->name('games.index');
+});
 
 Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');
 Route::post('/games/{game}/orders', [OrderController::class, 'store'])->name('orders.store');
