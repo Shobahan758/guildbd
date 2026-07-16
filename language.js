@@ -89,7 +89,6 @@
     "Join GameNova and start topping up in seconds.": "গেমনোভায় যোগ দিয়ে সেকেন্ডেই টপ-আপ শুরু করুন।",
     "First name": "নামের প্রথম অংশ",
     "Last name": "নামের শেষ অংশ",
-    "Phone number": "ফোন নম্বর",
     "Confirm password": "পাসওয়ার্ড নিশ্চিত করুন",
     "Minimum 8 characters": "কমপক্ষে ৮ অক্ষর",
     "Repeat password": "পাসওয়ার্ড আবার লিখুন",

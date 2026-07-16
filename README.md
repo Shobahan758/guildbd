@@ -31,7 +31,7 @@ Open `http://127.0.0.1:8000`.
 
 The included Docker Compose service starts MySQL on port `3308`, matching `.env.example`. File-based cache and sessions remain enabled by default.
 
-Authentication includes registration with a Bangladesh phone number, throttled login attempts, secure logout, authenticated header state and email password reset. In local development reset emails are written to `storage/logs/laravel.log` by the configured log mailer.
+Authentication includes email-based registration, throttled login attempts, secure logout, authenticated header state and email password reset. In local development reset emails are written to `storage/logs/laravel.log` by the configured log mailer.
 
 ## Admin dashboard
 
