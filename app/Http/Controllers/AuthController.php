@@ -46,7 +46,6 @@ class AuthController extends Controller
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'phone' => ['required', 'regex:/^01[3-9][0-9]{8}$/', 'unique:users,phone'],
             'password' => ['required', 'confirmed', Password::min(8)],
             'terms' => ['accepted'],
         ]);
@@ -54,7 +53,6 @@ class AuthController extends Controller
         $user = User::create([
             'name' => trim($validated['first_name'].' '.$validated['last_name']),
             'email' => $validated['email'],
-            'phone' => $validated['phone'],
             'password' => $validated['password'],
         ]);
 

@@ -69,10 +69,6 @@
                 <label class="form-label" for="register-email">Email address</label>
                 <input class="form-control" id="register-email" name="email" type="email" value="{{ old('email') }}" placeholder="you@example.com" autocomplete="email" required>
               </div>
-              <div class="col-12">
-                <label class="form-label" for="register-phone">Phone number</label>
-                <input class="form-control" id="register-phone" name="phone" type="tel" value="{{ old('phone') }}" placeholder="01XXXXXXXXX" autocomplete="tel" pattern="01[3-9][0-9]{8}" required>
-              </div>
               <div class="col-sm-6">
                 <label class="form-label" for="register-password">Password</label>
                 <input class="form-control" id="register-password" name="password" type="password" placeholder="Minimum 8 characters" autocomplete="new-password" minlength="8" required>

@@ -22,7 +22,10 @@ class ExampleTest extends TestCase
             ->assertSee('Welcome back')
             ->assertSee('data-password-toggle', false)
             ->assertSee(asset('js/auth.js'));
-        $this->get('/register')->assertOk()->assertSee('Create account');
+        $this->get('/register')
+            ->assertOk()
+            ->assertSee('Create account')
+            ->assertDontSee('Phone number');
     }
 
     public function test_each_game_page_renders_from_configuration(): void
@@ -110,7 +113,6 @@ class ExampleTest extends TestCase
             'first_name' => 'Nova',
             'last_name' => 'Player',
             'email' => 'player@example.com',
-            'phone' => '01712345678',
             'password' => 'StrongPass123!',
             'password_confirmation' => 'StrongPass123!',
             'terms' => '1',
@@ -119,7 +121,6 @@ class ExampleTest extends TestCase
         $this->assertAuthenticated();
         $this->assertDatabaseHas('users', [
             'email' => 'player@example.com',
-            'phone' => '01712345678',
         ]);
         $this->get('/login')->assertRedirect('/');
         $this->post('/logout')->assertRedirect('/');
