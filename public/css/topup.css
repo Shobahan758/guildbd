@@ -12,10 +12,17 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
 body {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   font-family: "Inter", "Noto Sans Bengali", sans-serif;
   background:
@@ -24,6 +31,14 @@ body {
 }
 
 a { text-decoration: none; }
+
+img,
+svg { max-width: 100%; }
+
+.header-inner,
+.header-inner > *,
+.page-main .row,
+.page-main .row > * { min-width: 0; }
 
 .site-header {
   position: sticky;
@@ -174,6 +189,7 @@ a { text-decoration: none; }
   font-size: clamp(1.7rem, 4vw, 2.45rem);
   font-weight: 800;
   letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
 }
 
 .product-heading span { color: var(--primary); }
@@ -291,6 +307,8 @@ a { text-decoration: none; }
 }
 
 .form-control {
+  width: 100%;
+  max-width: 100%;
   min-height: 50px;
   color: var(--ink);
   background: #faf9ff;
@@ -333,7 +351,14 @@ a { text-decoration: none; }
   transform: translateY(-2px);
 }
 
-.package-name { display: block; color: #353b55; font-size: 0.8rem; font-weight: 700; }
+.package-name {
+  display: block;
+  color: #353b55;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
 .package-price { display: block; margin-top: 0.25rem; color: var(--primary); font-size: 0.72rem; font-weight: 700; }
 
 .option-input:checked + .package-option {
@@ -391,7 +416,13 @@ a { text-decoration: none; }
 
 .payment-logo.bkash { background: linear-gradient(135deg, #d81b60, #f06292); }
 .payment-logo.nagad { background: linear-gradient(135deg, #e94d20, #f59e0b); }
-.payment-name { color: #41475f; font-size: 0.77rem; font-weight: 700; }
+.payment-name {
+  color: #41475f;
+  font-size: 0.77rem;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
 
 .option-input:checked + .payment-option {
   background: var(--surface);
@@ -528,7 +559,13 @@ a { text-decoration: none; }
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-.summary-row strong { color: #fff; font-weight: 700; text-align: right; }
+.summary-row strong {
+  min-width: 0;
+  color: #fff;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
 .summary-row.total { margin-top: 0.25rem; color: #fff; font-size: 0.9rem; border: 0; }
 .summary-row.total strong { color: var(--cyan); font-size: 1.15rem; }
 
@@ -602,20 +639,63 @@ a { text-decoration: none; }
   .header-search { grid-row: 2; grid-column: 1 / -1; width: 100%; min-width: 0; }
   .header-nav { grid-row: 1; grid-column: 2; }
   .summary-card { position: static; }
+  .page-main { padding-bottom: 4rem; }
 }
 
 @media (max-width: 575.98px) {
-  .page-main { padding-top: 1.5rem; }
+  .site-header .container,
+  .page-main > .container,
+  .footer-inner.container,
+  .copyright.container { padding-inline: 0.85rem; }
+  .header-inner { gap: 0.7rem !important; }
+  .page-main { padding: 1.35rem 0 3.5rem; }
+  .order-layout { --bs-gutter-x: 1rem; }
   .brand { font-size: 1.05rem; }
   .brand-mark { width: 2.3rem; height: 2.3rem; }
-  .header-nav { gap: 0.5rem !important; }
+  .brand-mark svg { width: 21px; height: 21px; }
+  .header-nav { gap: 0.4rem !important; }
   .page-language .language-label { display: none; }
+  .page-language summary { min-height: 2.3rem; padding: 0.45rem 0.55rem; }
   .register-link { display: none; }
-  .search-btn { min-width: 82px; }
+  .login-link { padding: 0.52rem 0.68rem; font-size: 0.78rem; }
+  .search-box .form-control { min-height: 43px; padding-inline: 0.75rem; font-size: 0.82rem; }
+  .search-btn { min-width: 72px; padding-inline: 0.65rem !important; font-size: 0.8rem; }
+  .breadcrumb-link { font-size: 0.76rem; }
+  .product-heading { margin-bottom: 1.25rem; font-size: clamp(1.55rem, 8vw, 2rem); }
   .product-cover { min-height: 190px; }
+  .cover-copy { right: 1rem; bottom: 1rem; left: 1rem; }
+  .product-points { padding: 1rem; }
+  .step-header { padding: 0.8rem 0.9rem; }
+  .step-title { font-size: 0.9rem; }
   .step-body { padding: 0.85rem; }
   .package-option { min-height: 76px; }
   .package-name { font-size: 0.73rem; }
+  .payment-grid > .col:last-child { width: 100%; }
+  .payment-option { min-height: 92px; padding: 0.65rem 0.4rem; }
+  .payment-details { padding: 0.75rem; }
+  .payment-instruction { align-items: flex-start; gap: 0.65rem; padding: 0.7rem; }
+  .instruction-number { font-size: 0.92rem; letter-spacing: 0.02em; }
+  .payment-steps { padding-left: 1.05rem; }
+  .summary-card { padding: 1rem; }
+  .footer-inner { padding-block: 2.25rem; }
+  .copyright { text-align: center; }
+}
+
+@media (min-width: 576px) {
+  .payment-grid > .col:last-child { width: 33.333333%; }
+}
+
+@media (max-width: 359.98px) {
+  .site-header .container,
+  .page-main > .container { padding-inline: 0.7rem; }
+  .brand { gap: 0.42rem; font-size: 0.98rem; }
+  .brand-mark { width: 2.15rem; height: 2.15rem; }
+  .header-inner { gap: 0.5rem !important; }
+  .login-link { padding-inline: 0.55rem; }
+  .search-btn { min-width: 66px; }
+  .step-body { padding: 0.72rem; }
+  .package-option { padding-inline: 0.35rem; }
+  .payment-instruction { flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {

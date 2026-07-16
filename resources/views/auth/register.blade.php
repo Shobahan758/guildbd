@@ -24,7 +24,7 @@
       </section>
 
       <section class="col-lg-6 auth-panel d-flex flex-column justify-content-center" aria-labelledby="register-title">
-        <div class="d-flex align-items-center justify-content-between gap-3">
+        <div class="auth-topbar d-flex align-items-center justify-content-between gap-3">
           <a class="brand" href="{{ route('home') }}" aria-label="GameNova home">
             <span class="brand-mark" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

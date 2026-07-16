@@ -39,6 +39,16 @@
 
     a { text-decoration: none; }
 
+    img,
+    svg { max-width: 100%; }
+
+    .site-header .container > .d-flex,
+    .site-header .container > .d-flex > *,
+    .games-section .row,
+    .games-section .row > *,
+    .how-section .row,
+    .how-section .row > * { min-width: 0; }
+
     .site-header {
       position: sticky;
       top: 0;
@@ -453,6 +463,8 @@
       margin: 0 0 0.35rem;
       font-size: 0.92rem;
       font-weight: 800;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .game-meta {
@@ -767,20 +779,45 @@
     }
 
     @media (max-width: 575.98px) {
+      .site-header .container { padding-inline: 0.85rem; }
+      .site-header .container > .d-flex { gap: 0.7rem !important; }
       .brand-text { font-size: 1.1rem; }
       .brand-mark { width: 2.35rem; height: 2.35rem; }
-      .account-nav { gap: 0.5rem !important; }
-      .language-menu summary { padding: 0.58rem 0.68rem; }
+      .brand-mark svg { width: 21px; height: 21px; }
+      .account-nav { gap: 0.4rem !important; }
+      .language-menu summary { min-height: 2.35rem; padding: 0.48rem 0.58rem; }
       .language-label { display: none; }
-      .search-btn { min-width: 86px; }
+      .login-btn { padding: 0.55rem 0.7rem; font-size: 0.8rem; }
+      .search-box .form-control { min-height: 43px; padding-inline: 0.75rem; font-size: 0.82rem; }
+      .search-btn { min-width: 72px; padding-inline: 0.65rem !important; font-size: 0.8rem; }
       .promo-banner { min-height: 440px; border-radius: 1rem; }
       .promo-content { padding: 1.4rem; }
       .promo-title { max-width: 310px; font-size: 2.15rem; }
+      .benefit-item { gap: 0.45rem; padding: 0.75rem 0.55rem; font-size: 0.73rem; line-height: 1.25; }
+      .benefit-icon { width: 1.9rem; height: 1.9rem; border-radius: 0.55rem; }
+      .games-section .row { --bs-gutter-x: 0.75rem; --bs-gutter-y: 0.75rem; }
       .game-art { min-height: 155px; }
       .game-symbol { width: 5.2rem; height: 5.2rem; font-size: 1.9rem; border-radius: 1.4rem; }
       .game-info { padding: 0.85rem; }
       .game-name { font-size: 0.82rem; }
+      .game-meta { font-size: 0.7rem; }
+      .how-shell { padding: 1.25rem; border-radius: 1.15rem; }
+      .process-card { min-height: 180px; }
       .footer-content { padding-top: 3.5rem; }
+    }
+
+    @media (max-width: 359.98px) {
+      .site-header .container { padding-inline: 0.7rem; }
+      .brand { gap: 0.42rem; }
+      .brand-text { font-size: 1rem; }
+      .brand-mark { width: 2.15rem; height: 2.15rem; }
+      .site-header .container > .d-flex { gap: 0.5rem !important; }
+      .login-btn { padding-inline: 0.55rem; }
+      .search-btn { min-width: 66px; }
+      .promo-title { font-size: 1.95rem; }
+      .benefit-item { padding-inline: 0.35rem; font-size: 0.68rem; }
+      .game-art { min-height: 135px; }
+      .game-info { padding: 0.7rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {

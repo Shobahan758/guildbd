@@ -64,7 +64,7 @@
 
       <form action="{{ route('orders.store', $slug) }}" method="post">
         @csrf
-        <div class="row g-4 align-items-start">
+        <div class="order-layout row g-4 align-items-start">
           <aside class="col-lg-3 fade-up">
             <article class="product-card">
               <div class="product-cover">
@@ -122,7 +122,7 @@
                 <h2 class="step-title" id="payment-title">Select Payment</h2>
               </header>
               <div class="step-body">
-                <div class="row row-cols-3 g-2">
+                <div class="payment-grid row row-cols-2 row-cols-sm-3 g-2">
                   <div class="col"><input class="option-input" id="bkash" name="payment" type="radio" value="bkash" @checked(old('payment') === 'bkash') required><label class="payment-option" for="bkash"><span class="payment-logo bkash">bKash</span><span class="payment-name">bKash</span></label></div>
                   <div class="col"><input class="option-input" id="nagad" name="payment" type="radio" value="nagad" @checked(old('payment') === 'nagad')><label class="payment-option" for="nagad"><span class="payment-logo nagad">Nagad</span><span class="payment-name">Nagad</span></label></div>
                   <div class="col"><input class="option-input" id="wallet" name="payment" type="radio" value="wallet" @checked(old('payment') === 'wallet')><label class="payment-option" for="wallet"><span class="payment-logo">GN</span><span class="payment-name">Nova Wallet</span></label></div>
