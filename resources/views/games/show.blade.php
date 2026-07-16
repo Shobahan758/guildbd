@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Buy {{ $game['title'] }} instantly from GameNova.">
+  <title>{{ $game['title'] }} — GameNova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Bengali:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('css/topup.css') }}" rel="stylesheet">
+  <script src="{{ asset('js/language.js') }}" defer></script>
+  <script src="{{ asset('js/topup.js') }}" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container py-3">
+      <div class="header-inner d-flex flex-wrap align-items-center gap-3 gap-lg-4">
+        <a class="brand me-lg-2" href="{{ route('home') }}" aria-label="GameNova home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+              <path d="M8 7h8a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4l-2.2-2h-3.6L8 17a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 10v4M6 12h4M16 11h.01M18 13h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>Game<span class="brand-accent">Nova</span></span>
+        </a>
+
+        <form class="header-search flex-grow-1" role="search">
+          <div class="search-box">
+            <input class="form-control" type="search" placeholder="Search games and vouchers" aria-label="Search games and vouchers">
+            <button class="search-btn px-3" type="submit">Search</button>
+          </div>
+        </form>
+
+        <nav class="header-nav d-flex align-items-center gap-3 ms-auto" aria-label="Account navigation">
+          <a class="nav-link-custom register-link" href="{{ route('register') }}">Register</a>
+          <details class="page-language">
+            <summary aria-label="Choose language"><span aria-hidden="true">🌐</span><span class="language-label">EN</span></summary>
+            <div class="language-options">
+              <a class="language-option active" href="#" lang="en">English</a>
+              <a class="language-option" href="#" lang="bn">বাংলা</a>
+            </div>
+          </details>
+          <a class="nav-link-custom login-link" href="{{ route('login') }}">Login</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <a class="breadcrumb-link" href="{{ route('home') }}#games">← Back to all games</a>
+      <h1 class="product-heading"><span class="product-title-name">{{ $game['name'] }}</span> <span>{{ $game['unit'] }}</span></h1>
+
+      @if (session('order_success'))
+        <div class="alert alert-success mb-4" role="alert">{{ session('order_success') }}</div>
+      @endif
+
+      @if ($errors->any())
+        <div class="alert alert-danger mb-4" role="alert">Please check the highlighted order information and try again.</div>
+      @endif
+
+      <form action="{{ route('orders.store', $slug) }}" method="post">
+        @csrf
+        <div class="row g-4 align-items-start">
+          <aside class="col-lg-3 fade-up">
+            <article class="product-card">
+              <div class="product-cover">
+                <img src="{{ asset($game['image']) }}" alt="{{ $game['name'] }} promotional artwork" width="1200" height="675">
+                <div class="cover-copy">
+                  <h2>{{ $game['name'] }}</h2>
+                  <p>{{ $game['subtitle'] }}</p>
+                </div>
+              </div>
+              <ul class="product-points">
+                <li><span class="point-icon">⚡</span> Instant delivery</li>
+                <li><span class="point-icon">✓</span> Safe and secure checkout</li>
+                <li><span class="point-icon">24</span> Support available 24/7</li>
+              </ul>
+            </article>
+          </aside>
+
+          <div class="col-lg-6 fade-up">
+            <section class="step-card" aria-labelledby="account-title">
+              <header class="step-header">
+                <span class="step-number">1</span>
+                <h2 class="step-title" id="account-title">Account Information</h2>
+              </header>
+              <div class="step-body">
+                <label class="form-label" for="player-id">{{ $game['player_label'] }}</label>
+                <input class="form-control @error('player_id') is-invalid @enderror" id="player-id" name="player_id" type="text" inputmode="{{ $game['input_mode'] }}" value="{{ old('player_id') }}" placeholder="{{ $game['placeholder'] }}" required>
+                @error('player_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                <p class="help-text">{{ $game['help'] }}</p>
+              </div>
+            </section>
+
+            <section class="step-card" aria-labelledby="recharge-title">
+              <header class="step-header">
+                <span class="step-number">2</span>
+                <h2 class="step-title" id="recharge-title">Select Recharge</h2>
+              </header>
+              <div class="step-body">
+                <div class="row row-cols-2 row-cols-sm-3 g-2" id="package-options">
+                  @foreach ($game['packages'] as $index => $package)
+                    <div class="col">
+                      <input class="option-input" id="package-{{ $index }}" name="package" type="radio" value="{{ $package['name'] }}" data-price="{{ $package['price'] }}" @checked(old('package') === $package['name']) required>
+                      <label class="package-option" for="package-{{ $index }}">
+                        <span><span class="package-name">{{ $package['name'] }}</span><span class="package-price">৳ {{ $package['price'] }}</span></span>
+                      </label>
+                    </div>
+                  @endforeach
+                </div>
+                @error('package')<p class="text-danger small mt-2 mb-0">{{ $message }}</p>@enderror
+              </div>
+            </section>
+
+            <section class="step-card" aria-labelledby="payment-title">
+              <header class="step-header">
+                <span class="step-number">3</span>
+                <h2 class="step-title" id="payment-title">Select Payment</h2>
+              </header>
+              <div class="step-body">
+                <div class="row row-cols-3 g-2">
+                  <div class="col"><input class="option-input" id="bkash" name="payment" type="radio" value="bkash" @checked(old('payment') === 'bkash') required><label class="payment-option" for="bkash"><span class="payment-logo bkash">bKash</span><span class="payment-name">bKash</span></label></div>
+                  <div class="col"><input class="option-input" id="nagad" name="payment" type="radio" value="nagad" @checked(old('payment') === 'nagad')><label class="payment-option" for="nagad"><span class="payment-logo nagad">Nagad</span><span class="payment-name">Nagad</span></label></div>
+                  <div class="col"><input class="option-input" id="wallet" name="payment" type="radio" value="wallet" @checked(old('payment') === 'wallet')><label class="payment-option" for="wallet"><span class="payment-logo">GN</span><span class="payment-name">Nova Wallet</span></label></div>
+                </div>
+                @error('payment')<p class="text-danger small mt-2 mb-0">{{ $message }}</p>@enderror
+
+                <div class="payment-details mt-3" id="bkash-details" data-payment-panel="bkash" hidden>
+                  <div class="payment-instruction">
+                    <div>
+                      <span class="instruction-kicker">bKash Send Money</span>
+                      <strong class="instruction-number">01700-000000</strong>
+                    </div>
+                    <span class="instruction-badge">Personal</span>
+                  </div>
+
+                  <ol class="payment-steps">
+                    <li>Open the bKash app and choose <strong>Send Money</strong>.</li>
+                    <li>Send the exact order amount to the number above.</li>
+                    <li>Enter your bKash number and Transaction ID below.</li>
+                  </ol>
+
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label class="form-label" for="bkash-number">Your bKash number</label>
+                      <input class="form-control" id="bkash-number" name="bkash_number" type="tel" inputmode="numeric" value="{{ old('bkash_number') }}" placeholder="01XXXXXXXXX" pattern="01[3-9][0-9]{8}" data-required-when-active="true" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="bkash-transaction-id">Transaction ID</label>
+                      <input class="form-control text-uppercase" id="bkash-transaction-id" name="bkash_transaction_id" type="text" value="{{ old('bkash_transaction_id') }}" placeholder="Example: CGA7H2K9LM" minlength="8" maxlength="16" data-required-when-active="true" disabled>
+                    </div>
+                  </div>
+                  <p class="payment-warning mb-0">Please verify the Transaction ID before submitting your order.</p>
+                </div>
+
+                <div class="payment-details nagad-details mt-3" id="nagad-details" data-payment-panel="nagad" hidden>
+                  <div class="payment-instruction">
+                    <div>
+                      <span class="instruction-kicker">Nagad Send Money</span>
+                      <strong class="instruction-number">01800-000000</strong>
+                    </div>
+                    <span class="instruction-badge">Personal</span>
+                  </div>
+
+                  <ol class="payment-steps">
+                    <li>Open the Nagad app and choose <strong>Send Money</strong>.</li>
+                    <li>Send the exact order amount to the number above.</li>
+                    <li>Enter your Nagad number and Transaction ID below.</li>
+                  </ol>
+
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label class="form-label" for="nagad-number">Your Nagad number</label>
+                      <input class="form-control" id="nagad-number" name="nagad_number" type="tel" inputmode="numeric" value="{{ old('nagad_number') }}" placeholder="01XXXXXXXXX" pattern="01[3-9][0-9]{8}" data-required-when-active="true" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="nagad-transaction-id">Transaction ID</label>
+                      <input class="form-control text-uppercase" id="nagad-transaction-id" name="nagad_transaction_id" type="text" value="{{ old('nagad_transaction_id') }}" placeholder="Example: 7H2K9LMC" minlength="8" maxlength="16" data-required-when-active="true" disabled>
+                    </div>
+                  </div>
+                  <p class="payment-warning mb-0">Please verify the Transaction ID before submitting your order.</p>
+                </div>
+
+                <button class="btn order-now-btn mt-3" type="submit">
+                  <span>Order Now</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </section>
+
+            <section class="step-card mb-0" aria-labelledby="rules-title">
+              <header class="step-header">
+                <span class="step-number">4</span>
+                <h2 class="step-title" id="rules-title">Rules &amp; Conditions</h2>
+              </header>
+              <div class="step-body">
+                <ul class="rules-list">
+                  <li>Only the selected game and server are supported for this product.</li>
+                  <li>Please verify your player details carefully before placing your order.</li>
+                  <li>Completed top-ups cannot be cancelled or refunded.</li>
+                  <li>Delivery normally completes instantly, but network delays may occur.</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+
+          <aside class="col-lg-3 fade-up">
+            <div class="summary-card">
+              <h2 class="summary-title">Order Summary</h2>
+              <div class="summary-row"><span>Product</span><strong>{{ $game['title'] }}</strong></div>
+              <div class="summary-row"><span>Region</span><strong>{{ $game['region'] }}</strong></div>
+              <div class="summary-row"><span>Delivery</span><strong>Instant</strong></div>
+              <div class="summary-row total"><span>Total</span><strong id="summary-total">From ৳{{ min(array_column($game['packages'], 'price')) }}</strong></div>
+              <button class="btn buy-btn" type="submit">Buy Now</button>
+              <p class="secure-note">🔒 Your payment information is protected.</p>
+            </div>
+          </aside>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <a class="brand mb-3" href="{{ route('home') }}"><span class="brand-mark">G</span><span class="text-white">Game<span class="brand-accent">Nova</span></span></a>
+          <p class="footer-copy mb-0">Fast and secure game top-ups for players across Bangladesh.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h2 class="footer-heading">Support</h2>
+          <a class="footer-link" href="#">Help center</a>
+          <a class="footer-link" href="#">Order status</a>
+          <a class="footer-link" href="#">Refund policy</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h2 class="footer-heading">Company</h2>
+          <a class="footer-link" href="#">About us</a>
+          <a class="footer-link" href="#">Contact us</a>
+          <a class="footer-link" href="#">Privacy</a>
+        </div>
+        <div class="col-lg-3">
+          <h2 class="footer-heading">Need help?</h2>
+          <p class="footer-copy mb-1">+880 1700-000000</p>
+          <p class="footer-copy mb-0">support@gamenova.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright d-flex flex-column flex-sm-row justify-content-between gap-2">
+      <span>© 2026 GameNova. All rights reserved.</span>
+      <span>Secure top-ups, every time.</span>
+    </div>
+  </footer>
+</body>
+</html>

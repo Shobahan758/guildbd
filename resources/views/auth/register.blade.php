@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create a new GameNova account.">
+  <title>Register — GameNova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Bengali:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+  <script src="{{ asset('js/language.js') }}" defer></script>
+</head>
+<body class="d-flex align-items-center justify-content-center py-lg-4">
+  <main class="auth-shell fade-up">
+    <div class="row g-0 h-100">
+      <section class="col-lg-6 auth-visual d-none d-lg-block" aria-labelledby="visual-title">
+        <div class="auth-visual-content">
+          <span class="visual-badge">Join the community</span>
+          <h2 class="visual-title" id="visual-title">Play more. Pay less. <span>Level up faster.</span></h2>
+          <p class="visual-copy">Create your free account to track every order, save player IDs and unlock members-only deals.</p>
+        </div>
+      </section>
+
+      <section class="col-lg-6 auth-panel d-flex flex-column justify-content-center" aria-labelledby="register-title">
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <a class="brand" href="{{ route('home') }}" aria-label="GameNova home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M8 7h8a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4l-2.2-2h-3.6L8 17a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 10v4M6 12h4M16 11h.01M18 13h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Game<span class="brand-accent">Nova</span></span>
+          </a>
+          <div class="d-flex align-items-center gap-2">
+            <details class="page-language">
+              <summary aria-label="Choose language"><span aria-hidden="true">🌐</span><span class="language-label">EN</span></summary>
+              <div class="language-options">
+                <a class="language-option active" href="#" lang="en">English</a>
+                <a class="language-option" href="#" lang="bn">বাংলা</a>
+              </div>
+            </details>
+            <a class="back-link" href="{{ route('home') }}">← Home</a>
+          </div>
+        </div>
+
+        <div class="mx-auto w-100" style="max-width: 460px;">
+          <h1 class="auth-heading" id="register-title">Create account</h1>
+          <p class="auth-subtitle">Join GameNova and start topping up in seconds.</p>
+
+          @if ($errors->any())
+            <div class="alert alert-danger" role="alert">{{ $errors->first() }}</div>
+          @endif
+
+          <form action="{{ route('register.store') }}" method="post">
+            @csrf
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label" for="first-name">First name</label>
+                <input class="form-control" id="first-name" name="first_name" type="text" value="{{ old('first_name') }}" placeholder="First name" autocomplete="given-name" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="last-name">Last name</label>
+                <input class="form-control" id="last-name" name="last_name" type="text" value="{{ old('last_name') }}" placeholder="Last name" autocomplete="family-name" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="register-email">Email address</label>
+                <input class="form-control" id="register-email" name="email" type="email" value="{{ old('email') }}" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="register-phone">Phone number</label>
+                <input class="form-control" id="register-phone" name="phone" type="tel" value="{{ old('phone') }}" placeholder="01XXXXXXXXX" autocomplete="tel" pattern="01[3-9][0-9]{8}" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="register-password">Password</label>
+                <input class="form-control" id="register-password" name="password" type="password" placeholder="Minimum 8 characters" autocomplete="new-password" minlength="8" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="confirm-password">Confirm password</label>
+                <input class="form-control" id="confirm-password" name="password_confirmation" type="password" placeholder="Repeat password" autocomplete="new-password" minlength="8" required>
+              </div>
+            </div>
+
+            <div class="form-check my-4">
+              <input class="form-check-input" id="agree-terms" name="terms" type="checkbox" required>
+              <label class="form-check-label" for="agree-terms">I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a>.</label>
+            </div>
+
+            <button class="btn auth-btn w-100" type="submit">Create my account</button>
+          </form>
+
+          <p class="switch-copy">Already have an account? <a href="{{ route('login') }}">Login here</a></p>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
