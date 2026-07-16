@@ -1,0 +1,221 @@
+(() => {
+  "use strict";
+
+  const translations = {
+    "GameNova — Instant Game Top-Up": "গেমনোভা — ইনস্ট্যান্ট গেম টপ-আপ",
+    "Search games and vouchers": "গেম ও ভাউচার খুঁজুন",
+    "Search": "খুঁজুন",
+    "Browse": "গেমসমূহ",
+    "Register": "রেজিস্টার",
+    "Login": "লগইন",
+    "English": "English",
+    "Instant delivery": "তাৎক্ষণিক ডেলিভারি",
+    "Level up your game": "আপনার গেমকে",
+    "in seconds.": "সেকেন্ডেই এগিয়ে নিন।",
+    "Top up your favourite games securely with bKash, Nagad and cards. Better value, instant delivery, zero hassle.": "বিকাশ, নগদ ও কার্ড দিয়ে নিরাপদে আপনার পছন্দের গেম টপ-আপ করুন। সেরা মূল্য, তাৎক্ষণিক ডেলিভারি, কোনো ঝামেলা নেই।",
+    "Explore Top-Ups": "টপ-আপ দেখুন",
+    "Secure payment": "নিরাপদ পেমেন্ট",
+    "Best local price": "সেরা স্থানীয় মূল্য",
+    "24/7 support": "২৪/৭ সহায়তা",
+    "Popular right now": "এখন জনপ্রিয়",
+    "New Game": "নতুন গেম",
+    "Top-Ups": "টপ-আপ",
+    "View all →": "সব দেখুন →",
+    "Free Fire Diamonds": "ফ্রি ফায়ার ডায়মন্ড",
+    "Instant top-up": "তাৎক্ষণিক টপ-আপ",
+    "PUBG Mobile UC": "পাবজি মোবাইল ইউসি",
+    "Global server": "গ্লোবাল সার্ভার",
+    "Mobile Legends": "মোবাইল লিজেন্ডস",
+    "Weekly pass": "সাপ্তাহিক পাস",
+    "Call of Duty CP": "কল অব ডিউটি সিপি",
+    "Garena server": "গ্যারেনা সার্ভার",
+    "Valorant Points": "ভ্যালোরেন্ট পয়েন্ট",
+    "Digital code": "ডিজিটাল কোড",
+    "Bangladesh's fast, secure and friendly destination for game credits, vouchers and digital products.": "বাংলাদেশে গেম ক্রেডিট, ভাউচার ও ডিজিটাল পণ্যের দ্রুত, নিরাপদ ও নির্ভরযোগ্য ঠিকানা।",
+    "Support": "সহায়তা",
+    "Help center": "সহায়তা কেন্দ্র",
+    "Contact us": "যোগাযোগ করুন",
+    "Order status": "অর্ডারের অবস্থা",
+    "Refund policy": "রিফান্ড নীতি",
+    "Company": "কোম্পানি",
+    "About us": "আমাদের সম্পর্কে",
+    "Terms & conditions": "শর্তাবলি",
+    "Privacy policy": "গোপনীয়তা নীতি",
+    "Become a seller": "বিক্রেতা হোন",
+    "Stay connected": "সংযুক্ত থাকুন",
+    "Get new offers, gaming news and exclusive promo codes.": "নতুন অফার, গেমিং খবর ও বিশেষ প্রোমো কোড পান।",
+    "© 2026 GameNova. All rights reserved.": "© ২০২৬ গেমনোভা। সর্বস্বত্ব সংরক্ষিত।",
+    "Made for gamers in Bangladesh 🇧🇩": "বাংলাদেশের গেমারদের জন্য তৈরি 🇧🇩",
+
+    "Login — GameNova": "লগইন — গেমনোভা",
+    "Secure access": "নিরাপদ প্রবেশ",
+    "Your next win is": "আপনার পরবর্তী জয়",
+    "one login away.": "মাত্র এক লগইন দূরে।",
+    "Access your orders, saved player IDs and exclusive GameNova offers from one secure dashboard.": "একটি নিরাপদ ড্যাশবোর্ড থেকে আপনার অর্ডার, সংরক্ষিত প্লেয়ার আইডি ও বিশেষ গেমনোভা অফার দেখুন।",
+    "← Home": "← হোম",
+    "Welcome back": "আবার স্বাগতম",
+    "Enter your account details to continue topping up.": "টপ-আপ চালিয়ে যেতে আপনার অ্যাকাউন্টের তথ্য দিন।",
+    "Email address": "ইমেইল ঠিকানা",
+    "you@example.com": "you@example.com",
+    "Password": "পাসওয়ার্ড",
+    "Forgot password?": "পাসওয়ার্ড ভুলে গেছেন?",
+    "Enter your password": "পাসওয়ার্ড লিখুন",
+    "Keep me signed in": "আমাকে লগইন রাখা হোক",
+    "Login to account": "অ্যাকাউন্টে লগইন করুন",
+    "or continue with": "অথবা চালিয়ে যান",
+    "New to GameNova?": "গেমনোভায় নতুন?",
+    "Create an account": "অ্যাকাউন্ট তৈরি করুন",
+
+    "Register — GameNova": "রেজিস্টার — গেমনোভা",
+    "Join the community": "কমিউনিটিতে যোগ দিন",
+    "Play more. Pay less.": "বেশি খেলুন, কম খরচ করুন।",
+    "Level up faster.": "দ্রুত এগিয়ে যান।",
+    "Create your free account to track every order, save player IDs and unlock members-only deals.": "প্রতিটি অর্ডার ট্র্যাক, প্লেয়ার আইডি সংরক্ষণ এবং সদস্যদের বিশেষ অফার পেতে বিনামূল্যে অ্যাকাউন্ট তৈরি করুন।",
+    "Create account": "অ্যাকাউন্ট তৈরি করুন",
+    "Join GameNova and start topping up in seconds.": "গেমনোভায় যোগ দিয়ে সেকেন্ডেই টপ-আপ শুরু করুন।",
+    "First name": "নামের প্রথম অংশ",
+    "Last name": "নামের শেষ অংশ",
+    "Phone number": "ফোন নম্বর",
+    "Confirm password": "পাসওয়ার্ড নিশ্চিত করুন",
+    "Minimum 8 characters": "কমপক্ষে ৮ অক্ষর",
+    "Repeat password": "পাসওয়ার্ড আবার লিখুন",
+    "I agree to the": "আমি সম্মত",
+    "Terms & Conditions": "শর্তাবলি",
+    "and": "এবং",
+    "Privacy Policy": "গোপনীয়তা নীতি",
+    "Create my account": "আমার অ্যাকাউন্ট তৈরি করুন",
+    "Already have an account?": "ইতোমধ্যে অ্যাকাউন্ট আছে?",
+    "Login here": "এখানে লগইন করুন",
+
+    "Free Fire Diamonds — GameNova": "ফ্রি ফায়ার ডায়মন্ড — গেমনোভা",
+    "← Back to all games": "← সব গেমে ফিরে যান",
+    "Free Fire": "ফ্রি ফায়ার",
+    "Diamonds": "ডায়মন্ড",
+    "Bangladesh · ID Code": "বাংলাদেশ · আইডি কোড",
+    "Safe and secure checkout": "নিরাপদ চেকআউট",
+    "Support available 24/7": "২৪/৭ সহায়তা পাওয়া যাবে",
+    "Account Information": "অ্যাকাউন্টের তথ্য",
+    "Player ID": "প্লেয়ার আইডি",
+    "Enter your player ID": "আপনার প্লেয়ার আইডি লিখুন",
+    "Open Free Fire profile and copy the numeric ID shown below your username.": "ফ্রি ফায়ার প্রোফাইল খুলে ইউজারনেমের নিচের সংখ্যার আইডিটি কপি করুন।",
+    "Select Recharge": "রিচার্জ নির্বাচন করুন",
+    "Weekly Pass": "সাপ্তাহিক পাস",
+    "Monthly Pass": "মাসিক পাস",
+    "7 Days Evo Access": "৭ দিনের ইভো অ্যাক্সেস",
+    "Select Payment": "পেমেন্ট নির্বাচন করুন",
+    "Nova Wallet": "নোভা ওয়ালেট",
+    "bKash Send Money": "বিকাশ সেন্ড মানি",
+    "Nagad Send Money": "নগদ সেন্ড মানি",
+    "Personal": "পার্সোনাল",
+    "Open the bKash app and choose": "বিকাশ অ্যাপ খুলে নির্বাচন করুন",
+    "Send Money": "সেন্ড মানি",
+    "Send the exact order amount to the number above.": "উপরের নম্বরে অর্ডারের সঠিক পরিমাণ পাঠান।",
+    "Enter your bKash number and Transaction ID below.": "নিচে আপনার বিকাশ নম্বর ও ট্রানজ্যাকশন আইডি লিখুন।",
+    "Open the Nagad app and choose": "নগদ অ্যাপ খুলে নির্বাচন করুন",
+    "Enter your Nagad number and Transaction ID below.": "নিচে আপনার নগদ নম্বর ও ট্রানজ্যাকশন আইডি লিখুন।",
+    "Your bKash number": "আপনার বিকাশ নম্বর",
+    "Your Nagad number": "আপনার নগদ নম্বর",
+    "Transaction ID": "ট্রানজ্যাকশন আইডি",
+    "Example: CGA7H2K9LM": "উদাহরণ: CGA7H2K9LM",
+    "Example: 7H2K9LMC": "উদাহরণ: 7H2K9LMC",
+    "Please verify the Transaction ID before submitting your order.": "অর্ডার সাবমিট করার আগে ট্রানজ্যাকশন আইডি যাচাই করুন।",
+    "Order Now": "এখনই অর্ডার করুন",
+    "Rules & Conditions": "নিয়ম ও শর্তাবলি",
+    "Only Bangladesh server ID codes are supported for this product.": "এই পণ্যের জন্য শুধু বাংলাদেশ সার্ভারের আইডি কোড সমর্থিত।",
+    "Please verify the Player ID carefully before placing your order.": "অর্ডার করার আগে প্লেয়ার আইডি ভালোভাবে যাচাই করুন।",
+    "Completed top-ups cannot be cancelled or refunded.": "সম্পন্ন টপ-আপ বাতিল বা রিফান্ড করা যাবে না।",
+    "Delivery normally completes instantly, but network delays may occur.": "সাধারণত ডেলিভারি তাৎক্ষণিক হয়, তবে নেটওয়ার্কের কারণে দেরি হতে পারে।",
+    "Order Summary": "অর্ডারের সারসংক্ষেপ",
+    "Product": "পণ্য",
+    "Region": "অঞ্চল",
+    "Bangladesh": "বাংলাদেশ",
+    "Delivery": "ডেলিভারি",
+    "Instant": "তাৎক্ষণিক",
+    "Total": "মোট",
+    "From ৳25": "৳২৫ থেকে",
+    "Buy Now": "এখনই কিনুন",
+    "🔒 Your payment information is protected.": "🔒 আপনার পেমেন্ট তথ্য সুরক্ষিত।",
+    "Fast and secure game top-ups for players across Bangladesh.": "সারা বাংলাদেশের খেলোয়াড়দের জন্য দ্রুত ও নিরাপদ গেম টপ-আপ।",
+    "Need help?": "সহায়তা প্রয়োজন?",
+    "Secure top-ups, every time.": "প্রতিবার নিরাপদ টপ-আপ।"
+  };
+
+  const textNodes = [];
+  const attributes = [];
+
+  function collectTranslatableContent() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement;
+        if (!parent || ["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent.tagName)) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    let node;
+    while ((node = walker.nextNode())) {
+      textNodes.push({ node, original: node.nodeValue });
+    }
+
+    document.querySelectorAll("[placeholder], [aria-label], [title]").forEach((element) => {
+      ["placeholder", "aria-label", "title"].forEach((attribute) => {
+        if (element.hasAttribute(attribute)) {
+          attributes.push({ element, attribute, original: element.getAttribute(attribute) });
+        }
+      });
+    });
+  }
+
+  function translateValue(value, language) {
+    if (language !== "bn") return value;
+    const trimmed = value.trim();
+    if (!translations[trimmed]) return value;
+    return value.replace(trimmed, translations[trimmed]);
+  }
+
+  function applyLanguage(language) {
+    const selectedLanguage = language === "bn" ? "bn" : "en";
+    document.documentElement.lang = selectedLanguage;
+    document.title = selectedLanguage === "bn" && translations[document.title]
+      ? translations[document.title]
+      : document.querySelector("title").dataset.originalTitle || document.title;
+
+    textNodes.forEach(({ node, original }) => {
+      node.nodeValue = translateValue(original, selectedLanguage);
+    });
+
+    attributes.forEach(({ element, attribute, original }) => {
+      element.setAttribute(attribute, translateValue(original, selectedLanguage));
+    });
+
+    document.querySelectorAll(".language-option").forEach((option) => {
+      option.classList.toggle("active", option.lang === selectedLanguage);
+    });
+
+    document.querySelectorAll(".language-label").forEach((label) => {
+      label.textContent = selectedLanguage === "bn" ? "বাংলা" : "EN";
+    });
+
+    localStorage.setItem("gamenova-language", selectedLanguage);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const title = document.querySelector("title");
+    title.dataset.originalTitle = document.title;
+    collectTranslatableContent();
+
+    const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+    const initialLanguage = queryLanguage || localStorage.getItem("gamenova-language") || "en";
+    applyLanguage(initialLanguage);
+
+    document.querySelectorAll(".language-option").forEach((option) => {
+      option.addEventListener("click", (event) => {
+        event.preventDefault();
+        applyLanguage(option.lang);
+        option.closest("details")?.removeAttribute("open");
+      });
+    });
+  });
+})();
